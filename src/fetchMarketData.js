@@ -5,7 +5,6 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const fetchMarketData = async () => {
   try {
-    
     const response = await axios.get(API_URL, {
       params: {
         vs_currency: "usd",
@@ -14,10 +13,10 @@ export const fetchMarketData = async () => {
         page: 1,
         sparkline: false,
       },
-      headers: { Authorization: `Bearer ${API_KEY}` },
+      headers: { 'x-cg-pro-api-key': API_KEY },
     });
+    console.log("API response:", response.data); // <-- Add this line
     return response.data;
-    
   } catch (error) {
     console.error("Error fetching market data:", error);
     return [];
